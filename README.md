@@ -160,3 +160,41 @@ requests==2.28.2
 pandas==1.5.3
 matplotlib==3.7.1
 ```
+
+
+## 補助(マクロを使用)
+このVBAが入ったブック（GetInstalledSoftware_AutoRun.xlsm）は、Windowsにインストールされているソフトウェア一覧を取得し、自動的にネットワークドライブに保存するツールです。
+本ファイルを ダブルクリックで開くだけ で、マクロが自動実行されます。取得された情報は、PC名_実行日.xlsx の形式で .xlsx ファイルとしてネットワークドライブに保存されます。
+
+
+🎯 機能一覧（2機能）
+✅ 1. ソフトウェア一覧の自動取得（WMI経由）
+Windows標準の WMI（Windows Management Instrumentation） を使用し、以下の情報を取得します：
+```
+ソフトウェア名（Name）
+
+バージョン（Version）
+
+インストール日（InstallDate）
+
+発行元（Vendor）
+
+対象は、Win32_Product クラスに登録されたアプリケーションです。
+```
+
+✅ 2. 自動保存（PC名_年月日.xlsx形式で出力）
+取得された情報は、下記形式のExcelファイルとして保存されます：
+
+```
+\\NETWORK-DRIVE\SoftwareList\PC名_20240912.xlsx
+PC名：実行したPCのホスト名
+
+20240912：実行日（年月日）
+```
+
+保存先は、管理者が指定するネットワークパスで、変更可能な変数（savePath）で定義されています。
+
+
+
+
+
